@@ -1,93 +1,169 @@
-📚 n8n RAG System – Google Drive AI Knowledge Assistant
-🚀 Project Overview
+# 📚 n8n RAG System – Google Drive AI Knowledge Assistant
 
-This project implements a Retrieval-Augmented Generation (RAG) system using n8n.
+A fully automated **Retrieval-Augmented Generation (RAG)** system built using **n8n**, **Supabase Vector Store**, and **Google Gemini AI**.
 
-The system:
+This system downloads company documents from Google Drive, converts them into embeddings, stores them in a vector database, and answers user queries strictly based on those documents.
 
-Downloads company documents from Google Drive
+---
 
-Converts them into embeddings
+## 🚀 Project Overview
 
-Stores them in a Supabase Vector Store
+This workflow automates:
 
-Uses an AI Agent to answer user queries based only on company documents
+1. 📥 Downloading documents from Google Drive  
+2. 📄 Processing & chunking documents  
+3. 🧠 Generating embeddings using Google Gemini  
+4. 🗄️ Storing embeddings in Supabase Vector Store  
+5. 🤖 AI Agent retrieving relevant content  
+6. 💬 Answering user queries using RAG  
+7. 🧾 Maintaining chat history with Postgres Memory  
 
-🧠 Architecture
+This ensures accurate, document-grounded responses with reduced hallucination.
 
-1️⃣ Trigger workflow execution
-2️⃣ Download files from Google Drive
-3️⃣ Load and chunk documents
-4️⃣ Generate embeddings (Google Gemini)
-5️⃣ Store embeddings in Supabase Vector Store
-6️⃣ AI Agent retrieves relevant chunks
-7️⃣ Answer user queries using RAG
+---
 
-🛠️ Modules Used
-🔹 Google Drive
+## 🏗️ System Architecture
 
+```
+User Query
+    ↓
+AI Agent
+    ↓
+Vector Search (Supabase)
+    ↓
+Relevant Document Chunks
+    ↓
+Gemini Chat Model
+    ↓
+Final Answer
+```
+
+Document Ingestion Flow:
+
+```
+Google Drive → Data Loader → Embeddings (Gemini) → Supabase Vector Store
+```
+
+---
+
+## 🛠️ Technologies Used
+
+- **n8n** (Workflow Automation)
+- **Google Drive API**
+- **Google Gemini (Embeddings + Chat Model)**
+- **Supabase (Vector Store)**
+- **PostgreSQL (Chat Memory)**
+- **RAG Architecture**
+
+---
+
+## 🔧 Workflow Components
+
+### 1️⃣ Trigger
+Manual workflow execution or chat trigger.
+
+### 2️⃣ Google Drive Node
 Downloads company documents automatically.
 
-🔹 Default Data Loader
+### 3️⃣ Default Data Loader
+Processes and splits documents into chunks.
 
-Processes and chunks documents.
+### 4️⃣ Google Gemini Embeddings
+Creates vector embeddings for semantic similarity search.
 
-🔹 Google Gemini Embeddings
+### 5️⃣ Supabase Vector Store
+Stores document embeddings for retrieval.
 
-Generates vector embeddings for semantic search.
+### 6️⃣ AI Agent
+Handles user queries and retrieves relevant context.
 
-🔹 Supabase Vector Store
+### 7️⃣ Google Gemini Chat Model
+Generates final answers grounded in retrieved content.
 
-Stores embeddings for retrieval.
+### 8️⃣ Postgres Chat Memory
+Maintains conversational history.
 
-🔹 AI Agent
+---
 
-Handles user queries.
+## 🎯 Key Features
 
-🔹 Google Gemini Chat Model
+- ✅ Automated document ingestion
+- ✅ Vector-based semantic search
+- ✅ Context-aware AI responses
+- ✅ Conversational memory support
+- ✅ Reduced hallucination
+- ✅ Enterprise-ready architecture
+- ✅ Scalable and modular design
 
-Generates final answer.
+---
 
-🔹 Postgres Chat Memory
+## 🔐 Environment Variables
 
-Stores conversation history.
+Create a `.env` file based on `.env.example`:
 
-🎯 Key Features
+```env
+GOOGLE_API_KEY=your_google_api_key
+SUPABASE_URL=your_supabase_url
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+POSTGRES_CONNECTION_STRING=your_postgres_connection
+```
 
-✅ Fully automated document ingestion
-✅ Vector-based semantic search
-✅ Conversational memory
-✅ Scalable architecture
-✅ No hallucination (answers from documents only)
+---
 
-🔐 Environment Variables
+## ▶️ How to Use
 
-Create .env file using .env.example:
+1. Import `workflow.json` into n8n
+2. Configure credentials (Google Drive, Supabase, Gemini)
+3. Set environment variables
+4. Execute the document ingestion workflow
+5. Start querying via chat interface
 
-GOOGLE_API_KEY=
-SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
-POSTGRES_CONNECTION_STRING=
+---
 
-▶️ How to Use
+## 📸 Architecture Diagram
 
-Import workflow.json into n8n
+Add your workflow screenshot here:
 
-Configure credentials
+```
+![Architecture](architecture.png)
+```
 
-Set environment variables
+---
 
-Execute workflow
+## 📦 Repository Structure
 
-Start asking questions
+```
+.
+├── workflow.json
+├── architecture.png
+├── .env.example
+├── README.md
+└── LICENSE
+```
 
-📸 Architecture Diagram
+---
 
-👨‍💻 Author
+## 📈 Real-World Use Cases
 
-Abdul Wajad Raza
-AI Developer | Automation Enthusiast
+- Company internal knowledge assistant
+- HR policy Q&A bot
+- Legal document assistant
+- Research paper search system
+- Enterprise documentation chatbot
 
-🏷️ Tags
+---
 
-RAG, n8n, AI Agent, Vector Database, Supabase, Google Gemini, Automation
+## 👨‍💻 Author
+
+**Abdul Wajad Raza**  
+AI Developer | Automation Enthusiast | RAG Systems Builder  
+
+---
+
+## 🏷️ Tags
+
+`RAG` `n8n` `AI Agent` `Vector Database` `Supabase` `Google Gemini` `Automation` `LLM` `Enterprise AI`
+
+---
+
+## ⭐ If you find this project useful, consider giving it a star!
